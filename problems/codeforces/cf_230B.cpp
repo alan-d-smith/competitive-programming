@@ -21,7 +21,7 @@ void sieve()
         }
 
         // 6k+1
-        if ((i+2)*(i+2) <= MAX && prime[i + 2])
+        if ((i+2)*(i+2) < MAX && prime[i + 2])
         {
             for (long long j = (i + 2) * (i + 2); j < MAX; j += (i + 2)) prime[j] = false;
         }
