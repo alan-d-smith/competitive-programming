@@ -1,17 +1,31 @@
 #include <bits/stdc++.h>
+#define MAX 1000001
 using namespace std;
 
-bool is_prime(long long x)
+vector<bool> prime(MAX, true);
+void sieve()
 {
-    if (x <= 1) return false;
-    if (x <= 3) return true;
-    if (x%3==0 || x%2==0) return false;
+    prime[0] = false;
+    prime[1] = false;
+    prime[4] = false;
 
-    for (int i=5; i*i<=x; i+=6)
+    for (int i = 4; i < MAX; i += 2) prime[i] = false;
+    for (int i = 9; i < MAX; i += 3) prime[i] = false;
+
+    for (long long i=5; i*i<MAX; i+=6)
     {
-        if (x%i==0 || x%(i+2) == 0) return false;
+        // 6k-1
+        if (prime[i])
+        {
+            for (long long j = i * i; j < MAX; j += i) prime[j] = false;
+        }
+
+        // 6k+1
+        if ((i+2)*(i+2) <= MAX && prime[i + 2])
+        {
+            for (long long j = (i + 2) * (i + 2); j < MAX; j += (i + 2)) prime[j] = false;
+        }
     }
-    return true;
 }
 
 int main()
@@ -23,17 +37,19 @@ int main()
     long long x;
     cin >> n;
 
+    sieve();
+
     while (n--)
     {
         cin >> x;
 
         long long root = sqrt(x);
-        if (root*root == x && is_prime(root))
+        if (root*root == x && prime[root])
         {
-            cout << "YES" << endl;
+            cout << "YES\n";
         } else
         {
-            cout << "NO" << endl;
+            cout << "NO\n";
         }
     }
 
