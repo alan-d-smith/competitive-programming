@@ -26,7 +26,7 @@ int main()
     if (l-a[n-1] > d) d = l-a[n-1];
 
     int dec = 10;
-    std::printf("%.*f\n", dec, d);
+    printf("%.*f\n", dec, d);
 
     return 0;
 }
