@@ -13,7 +13,7 @@ int main()
     {
         cin >> k;
         int x2=0, xgt2=0;
-        for (int i=1; i<=k; ++i)
+        while (k--)
         {
             cin >> c;
             if (c>2) ++xgt2;
