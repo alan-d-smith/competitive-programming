@@ -44,3 +44,4 @@ CMakeLists.txt
 
 # debug information files
 *.dwo
+/cmake-build-gcc/CMakeFiles/**
