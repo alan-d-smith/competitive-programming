@@ -1,0 +1,34 @@
+\documentclass[9pt, a4paper, notitlepage]{extreport}
+\usepackage{kactlpkg}
+\kactlcontentdir{content}
+
+% Cover page details, used when \maketeampage is uncommented below.
+% \university's first argument is also the top-left page header (from page 2).
+% Third argument is a logo file in content/tex/ (e.g. logo.pdf), or empty for none
+\university{Uni}{University Name}{}
+\team{Team Name}{Member One, Member Two, Member Three}
+% \contest{Contest Name}{Contest Date}
+\contest{\ }{\today}
+% \enablecolors
+
+\begin{document}
+	% Cover page:
+	% \maketeampage
+	\begin{multicols*}{3}
+	\thispagestyle{fancy}
+	% Table of contents, without subsections:
+	\setcounter{tocdepth}{0}
+	\tableofcontents
+
+	\kactlchapter{contest}
+	\kactlchapter{math}
+	\kactlchapter{data-structures}
+	\kactlchapter{numerical}
+	\kactlchapter{number-theory}
+	\kactlchapter{combinatorial}
+	\kactlchapter{graph}
+	\kactlchapter{geometry}
+	\kactlchapter{strings}
+	\kactlchapter{various}
+	\end{multicols*}
+\end{document}
