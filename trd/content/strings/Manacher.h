@@ -1,0 +1,25 @@
+/**
+ * Author: User adamant on CodeForces
+ * Source: http://codeforces.com/blog/entry/12143
+ * Description: Use for longest palindromic substring (or all palindromes).
+ *  p[1][i] = k means s[i-k..i+k] is the longest odd palindrome centred at i,
+ *  p[0][i] = k means s[i-k..i+k-1] is the longest even palindrome centred
+ *  between i-1 and i. The longest is the max of 2p[1][i]+1 and 2p[0][i].
+ * Time: O(N)
+ * Status: Stress-tested
+ */
+#pragma once
+
+array<vi, 2> manacher(const string& s) {
+	int n = sz(s);
+	array<vi,2> p = {vi(n+1), vi(n)};
+	rep(z,0,2) for (int i=0,l=0,r=0; i < n; i++) {
+		int t = r-i+!z;
+		if (i<r) p[z][i] = min(t, p[z][l+t]);
+		int L = i-p[z][i], R = i+p[z][i]-!z;
+		while (L>=1 && R+1<n && s[L-1] == s[R+1])
+			p[z][i]++, L--, R++;
+		if (R>r) l=L, r=R;
+	}
+	return p;
+}
