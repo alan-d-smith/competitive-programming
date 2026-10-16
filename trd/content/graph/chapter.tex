@@ -2,8 +2,24 @@
 
 \section{Fundamentals}
 	\kactlimport{GraphBasics.cpp}
-	\kactlimport{Dijkstra.cpp}
+	\kactlimport{Bipartite.cpp}
 	\kactlimport{TopoSort.h}
+	\textbf{Cycles.} A directed graph has a cycle iff \texttt{topoSort} returns fewer than $n$ nodes.
+	An undirected graph has a cycle iff, adding its edges one by one to a \texttt{UF}, some \texttt{join} returns false.
+
+\section{Shortest paths}
+	Unweighted: \texttt{bfs}. Weights $\ge 0$: Dijkstra. Negative weights: Bellman--Ford.
+	All pairs, $n \le 500$: Floyd--Warshall.
+	\kactlimport{Dijkstra.cpp}
+	\kactlimport{BellmanFord.cpp}
+	\kactlimport{FloydWarshall.cpp}
+
+\section{Spanning trees}
+	\kactlimport{Kruskal.cpp}
+	\kactlimport{DirectedMST.h}
 
 \section{Trees}
-	\kactlimport{DirectedMST.h}
+	\kactlimport{LCA.cpp}
+
+\section{Flow}
+	\kactlimport{Dinic.cpp}
