@@ -1,0 +1,108 @@
+\chapter{What to use when}
+% A list of clues that hint at a technique. Names in typewriter font are files in this TRD.
+
+\section{From the constraints}
+About $10^8$ simple operations run in a second. With many test cases, look at the sum of $n$.
+
+\begin{tabular}{@{}l@{\hspace{6pt}}l@{\hspace{6pt}}p{0.58\columnwidth}@{}}
+$n \le$ & Aim for & Often \\ \hline
+$10$ & $O(n!)$ & try every order (\texttt{next\_permutation}) \\
+$20$ & $O(2^n n)$ & try every subset, bitmask DP \\
+$40$ & $O(2^{n/2})$ & meet in the middle: solve each half, combine \\
+$500$ & $O(n^3)$ & Floyd--Warshall, interval DP \\
+$5000$ & $O(n^2)$ & DP over pairs (LCS, knapsack) \\
+$2 \cdot 10^5$ & $O(n \log n)$ & sorting, binary search, segment tree \\
+$10^7$ & $O(n)$ & prefix sums, two pointers, sieve \\
+$10^{18}$ & $O(\log n)$ & a formula, binary search, matrix power \\
+\end{tabular}
+
+\section{From the wording}
+\newcommand{\whencue}[1]{\item \emph{#1} $\to$}
+\newcommand{\whenfile}[1]{\texttt{#1}}
+
+\subsection{Optimising and searching}
+\begin{itemize}[leftmargin=1em, nosep]
+	\whencue{minimise the maximum, maximise the minimum, smallest $x$ that works}
+		binary search on the answer, if every $x$ above a working one also works (\whenfile{BinarySearchAnswer}).
+	\whencue{maximise or minimise something that rises then falls, e.g.\ a distance over time}
+		ternary search (\whenfile{TernarySearch}).
+	\whencue{choose the best order} for $n \le 10$ try all; otherwise sort by some key, and check the
+		greedy against brute force on small cases.
+	\whencue{most intervals that do not overlap} sort by end, take each one that starts after the last taken ends.
+	\whencue{the $x$ minimising $\sum |x - a_i|$} the median; for $\sum (x - a_i)^2$, the mean.
+\end{itemize}
+
+\subsection{Counting and DP}
+\begin{itemize}[leftmargin=1em, nosep]
+	\whencue{how many ways\dots, modulo $10^9+7$} DP, or combinatorics (\whenfile{ModBinomial}).
+	\whencue{pick items within a weight limit} knapsack; \emph{make an amount from coins}: \whenfile{coinWays}, \whenfile{minCoins} (\whenfile{Knapsack}).
+	\whencue{fewest edits between strings, common subsequence} \whenfile{LCS}; \emph{increasing subsequence}: \whenfile{LIS}.
+	\whencue{visit all of $n \le 18$ places, assign $n$ people to $n$ tasks} bitmask DP (\whenfile{BitmaskDP}).
+	\whencue{merge or split a sequence, cost per segment} interval DP (\whenfile{IntervalDP}).
+	\whencue{count or longest paths in a DAG} DP in topological order (\whenfile{TopoSort}).
+	\whencue{two players, both play optimally} DP over positions (see Techniques).
+	\whencue{expected value} linearity: add the expectations of the parts; long run: \whenfile{SteadyState}.
+\end{itemize}
+
+\subsection{Graphs}
+\begin{itemize}[leftmargin=1em, nosep]
+	\whencue{fewest moves (grid, puzzle)} BFS where nodes are states (\whenfile{GraphBasics}).
+	\whencue{shortest path with extra state (fuel, keys held, last move)} Dijkstra or BFS on (node, state) pairs.
+	\whencue{cheapest route} weights $\ge 0$: \whenfile{Dijkstra}; negative: \whenfile{BellmanFord}; all pairs, $n \le 500$: \whenfile{FloydWarshall}.
+	\whencue{exchange rates: can you make money?} weights $-\log(\text{rate})$, look for a negative cycle (\whenfile{BellmanFord}, with \texttt{double} weights).
+	\whencue{tasks with prerequisites, is there a deadlock?} \whenfile{TopoSort} (a cycle iff fewer than $n$ nodes come out).
+	\whencue{connect everything as cheaply as possible} \whenfile{Kruskal}. The path between two nodes in the MST also has the smallest possible largest edge.
+	\whencue{are $a$ and $b$ connected, as links are added} \whenfile{UnionFind}. Links removed over time: go backwards, adding them.
+	\whencue{split into two sides with no conflicts} \whenfile{Bipartite}.
+	\whencue{pair up one-to-one (people and jobs)} matching (\whenfile{Dinic}). Fewest nodes touching every edge of a
+		bipartite graph = maximum matching.
+	\whencue{fewest edges to cut to separate $s$ from $t$, max throughput} min cut = max flow (\whenfile{Dinic}).
+\end{itemize}
+
+\subsection{Trees}
+\begin{itemize}[leftmargin=1em, nosep]
+	\whencue{is it a tree?} connected and $m = n - 1$.
+	\whencue{distance between two nodes, common ancestor, jumping up $k$} \whenfile{LCA}.
+	\whencue{longest path (diameter)} BFS from any node to the farthest node $u$, then BFS from $u$.
+\end{itemize}
+
+\subsection{Arrays and ranges}
+\begin{itemize}[leftmargin=1em, nosep]
+	\whencue{sum of a[l..r], no updates} \whenfile{PrefixSums} (also 2D, and xor). \emph{Add to ranges, read at the end}: difference array.
+	\whencue{update one value, range sums} \whenfile{FenwickTree}; range min or max: \whenfile{SegmentTree}.
+	\whencue{add to ranges and query ranges} \whenfile{LazySegmentTree}.
+	\whencue{longest or shortest subarray with a sum limit (values $\ge 0$), at most $k$ distinct} \whenfile{TwoPointers}.
+	\whencue{number of subarrays with sum $k$} \whenfile{countSum} (\whenfile{PrefixSums}).
+	\whencue{largest subarray sum} Kadane: \texttt{cur = max(a[i], cur + a[i])}, answer is the largest \texttt{cur}.
+	\whencue{count pairs $i < j$ with $a_i > a_j$ (inversions)} \whenfile{FenwickTree} over compressed values.
+	\whencue{values up to $10^9$, only their order matters} coordinate compression.
+	\whencue{nearest bigger or smaller element} monotonic stack.
+\end{itemize}
+
+\subsection{Strings}
+\begin{itemize}[leftmargin=1em, nosep]
+	\whencue{find all occurrences, smallest period} \whenfile{KMP}.
+	\whencue{compare substrings, longest substring that repeats or is common to two strings} \whenfile{Hashing}.
+	\whencue{palindromes} \whenfile{Manacher}, or compare forward and backward hashes.
+\end{itemize}
+
+\subsection{Maths}
+\begin{itemize}[leftmargin=1em, nosep]
+	\whencue{$a^b \bmod p$, dividing mod $p$, $\binom{n}{r} \bmod p$} \whenfile{ModBinomial}.
+	\whencue{primes up to $10^7$} \whenfile{Eratosthenes}; one $n \le 10^{12}$: trial division up to $\sqrt n$.
+	\whencue{a linear recurrence for $n$ up to $10^{18}$} matrix power (\whenfile{Matrix}).
+	\whencue{solve linear equations} \whenfile{SolveLinear}.
+\end{itemize}
+
+\subsection{Geometry}
+\begin{itemize}[leftmargin=1em, nosep]
+	\whencue{area, point inside} \whenfile{PolygonArea}, \whenfile{InsidePolygon}.
+	\whencue{shortest fence around points, two farthest points} \whenfile{ConvexHull}, \whenfile{HullDiameter}.
+	\whencue{closest two points, smallest circle around points} \whenfile{ClosestPair}, \whenfile{MinimumEnclosingCircle}.
+	Use \texttt{ll} where you can; compare doubles with a tolerance.
+\end{itemize}
+
+\section{If nothing fits}
+Solve small cases by hand or with a brute force, and look for a pattern. Fix one thing (the maximum, the
+first element, the meeting point) and see if the rest becomes easy. Go backwards in time. Sort the input.
+Ask whether the answer is monotone in something (binary search). Turn states and moves into a graph.
