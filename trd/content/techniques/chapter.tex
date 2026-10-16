@@ -1,0 +1,33 @@
+\chapter{Techniques}
+
+\section{Searching}
+	\kactlimport{BinarySearchAnswer.cpp}
+	\kactlimport{TernarySearch.cpp}
+
+\section{Arrays}
+	\kactlimport{PrefixSums.cpp}
+	\kactlimport{TwoPointers.cpp}
+	\textbf{Coordinate compression.} If values are up to $10^9$ but only their order matters, replace each by its
+	index among the sorted distinct values: \texttt{vals = a; sort, erase(unique); x = lower\_bound(all(vals), x) - vals.begin()}.
+
+	\textbf{Monotonic stack.} For the nearest bigger element to the left of each a[i], keep a stack of indices:
+	pop while \texttt{a[top] <= a[i]}, then the top (if any) is the answer, then push i. $O(n)$ in total.
+
+\section{Dynamic programming}
+	\textbf{Designing a DP.}
+	(1) State: the few facts about a partial solution that decide what can still happen,
+	e.g.\ \texttt{dp[i][c]} = the best using the first $i$ items with capacity $c$.
+	(2) Transition: get a state from smaller ones, usually by trying each choice for the next step.
+	(3) Base cases. (4) An order in which every state comes after the states it uses, or recursion with
+	memoisation, which finds the order by itself. (5) Where the answer is, e.g.\ \texttt{dp[n][W]}.
+	The time is the number of states times the work per state: check it against the constraints.
+	Counting problems add over the choices (mod $p$), optimisation problems take the min or max.
+
+	Common states: a prefix, \texttt{dp[i]} (e.g.\ grid paths: \texttt{dp[i][j] = dp[i-1][j] + dp[i][j-1]};
+	longest increasing subsequence: \texttt{LIS.h}); a node of a DAG, in topological order;
+	a subset of up to 20 items, \texttt{dp[S]}; a segment, \texttt{dp[l][r]}. Games where both players play
+	optimally: a position is winning iff some move leads to a losing position (usually, having no move loses).
+	\kactlimport{Knapsack.cpp}
+	\kactlimport{LCS.cpp}
+	\kactlimport{BitmaskDP.cpp}
+	\kactlimport{IntervalDP.cpp}
