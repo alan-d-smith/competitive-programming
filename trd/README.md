@@ -9,7 +9,13 @@ Needs `pdflatex` (MiKTeX/TeX Live), `python3`, `make`, `sh` and `cpp`. Run from 
 ```sh
 PATH="/c/msys64/ucrt64/bin:$PATH" make trd   # full build (two LaTeX passes) -> trd.pdf
 PATH="/c/msys64/ucrt64/bin:$PATH" make fast  # one pass, table of contents may be stale
+make label                                   # binder label -> label.pdf
 ```
+
+ICPC/EUC rules: up to 25 single-sided pages, the university and team name in the upper
+left and the page number in the upper right of every page, in a folder with the
+institution's name on the front. For the folder, print `label.pdf` at actual size, cut
+it out and stick it on the front.
 
 The `PATH` prefix matters: Git Bash puts its own `/mingw64/bin` first, which breaks
 `cpp`, and then every code hash silently comes out as `d41d8c` (the hash of nothing).
@@ -19,7 +25,8 @@ The `PATH` prefix matters: Git Bash puts its own `/mingw64/bin` first, which bre
 ```text
 content/
   trd.tex            main document: cover page details, chapter order
-  tex/               format (style + preprocessor), not content
+  label.tex          binder label: KCL logo, team, members, university, date (set at the top)
+  tex/               format (style, preprocessor, KCL logo), not content
   <chapter>/
     chapter.tex      \chapter{...}, \section{...} and the list of imported files
     *.h, *.sh, ...   the files that get printed
@@ -74,6 +81,22 @@ Most of the content is also from KACTL:
   Ulf Lundström, Pythagorean triples, and the bit hacks.
 
 Written for this TRD: `math/StdMath.cpp`, `math/ModBinomial.cpp`, `math/SteadyState.cpp`,
-`data-structures/StdContainers.cpp`, `data-structures/BinarySearch.cpp`, `graph/GraphBasics.cpp`,
-`graph/Dijkstra.cpp`, `number-theory/Eratosthenes.cpp`, `various/SubsetSums.cpp`,
-the Counting subsection and the shortened Markov chains section.
+`data-structures/StdContainers.cpp`, `data-structures/BinarySearch.cpp`,
+`data-structures/FenwickTree.cpp`, `data-structures/LazySegmentTree.cpp`, `graph/GraphBasics.cpp`,
+`graph/Bipartite.cpp`, `graph/Dijkstra.cpp`, `graph/BellmanFord.cpp`, `graph/Kruskal.cpp`,
+`graph/LCA.cpp`, `graph/Dinic.cpp`, `strings/Hashing.cpp`, `number-theory/Eratosthenes.cpp`,
+`various/SubsetSums.cpp`, the Counting subsection, the shortened Markov chains section, the
+notes on cycles and choosing a shortest-path algorithm in the Graph chapter, the "What to use
+when" chapter (`guide/`) and the whole Techniques chapter (`techniques/`).
+
+Written for this TRD but closely following KACTL: `graph/FloydWarshall.cpp` (the clamping and the
+$-\infty$ pass of KACTL's `FloydWarshall.h`) and `strings/KMP.cpp` (KACTL's `KMP.h`: same separator
+trick and `match` interface). `techniques/TernarySearch.cpp` uses the same idea as KACTL's
+`TernarySearch.h` for integers; KACTL's `GoldenSectionSearch.h` does reals with fewer calls of f.
+
+The Fenwick tree, lazy segment tree, every file in `techniques/` and all of the graph and string
+files above except `GraphBasics.cpp` and `Dijkstra.cpp` were stress-tested against brute force.
+
+`content/tex/kcl-logo.tex` draws the King's College London logo in TikZ, converted from
+[the SVG on Wikimedia Commons](https://commons.wikimedia.org/wiki/File:King%27s_College_London_logo.svg)
+(public domain as simple text and shapes, but a KCL trademark).
