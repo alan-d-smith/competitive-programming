@@ -1,0 +1,30 @@
+% Binder label: print at actual size, cut along the dashed line and stick it on
+% the front of the TRD binder. ICPC/EUC rules only require the institution's name,
+% which the logo gives.
+\documentclass[a4paper]{article}
+\usepackage[margin=15mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{pifont}
+\usepackage{tikz}
+\usetikzlibrary{svg.path}
+\input{kcl-logo}
+\pagestyle{empty}
+
+\newcommand{\teamname}{\textminus1 tries}
+\newcommand{\members}{Alan Smith}
+\newcommand{\institution}{King's College London}
+\newcommand{\contestdate}{17 October 2026}
+
+\begin{document}
+\noindent\begin{tikzpicture}
+	\draw[dashed, gray] (0, 0) rectangle (116mm, 55mm);
+	\node[fill=white, inner sep=1pt, text=gray] at (10mm, 55mm) {\ding{34}};
+	\node[anchor=west, inner sep=0] at (9mm, 27.5mm) {\resizebox{48mm}{!}{\kcllogo}};
+	\node[anchor=west, align=left, inner sep=0] at (66mm, 27.5mm) {%
+		{\fontsize{30}{34}\selectfont\bfseries \teamname}\\[2mm]
+		{\Large \members}\\[6mm]
+		{\large \institution}\\[1mm]
+		{\itshape \contestdate}};
+\end{tikzpicture}
+\end{document}
