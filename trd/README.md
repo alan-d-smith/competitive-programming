@@ -85,16 +85,19 @@ Written for this TRD: `math/StdMath.cpp`, `math/ModBinomial.cpp`, `math/SteadySt
 `data-structures/FenwickTree.cpp`, `data-structures/LazySegmentTree.cpp`, `graph/GraphBasics.cpp`,
 `graph/Bipartite.cpp`, `graph/Dijkstra.cpp`, `graph/BellmanFord.cpp`, `graph/Kruskal.cpp`,
 `graph/LCA.cpp`, `graph/Dinic.cpp`, `strings/Hashing.cpp`, `number-theory/Eratosthenes.cpp`,
-`various/SubsetSums.cpp`, the Counting subsection, the shortened Markov chains section, the
-notes on cycles and choosing a shortest-path algorithm in the Graph chapter, the "What to use
-when" chapter (`guide/`) and the whole Techniques chapter (`techniques/`).
+`number-theory/Factorization.cpp`, `various/SubsetSums.cpp`, the Counting subsection, the shortened
+Markov chains section, the notes on cycles and choosing a shortest-path algorithm in the Graph
+chapter, the Essentials chapter (`essentials/`), the "What to use when" chapter (`guide/`) and the
+Techniques chapter (`techniques/`, apart from KACTL's `LIS.h`, moved there from Various).
 
 Written for this TRD but closely following KACTL: `graph/FloydWarshall.cpp` (the clamping and the
 $-\infty$ pass of KACTL's `FloydWarshall.h`) and `strings/KMP.cpp` (KACTL's `KMP.h`: same separator
 trick and `match` interface). `techniques/TernarySearch.cpp` uses the same idea as KACTL's
 `TernarySearch.h` for integers; KACTL's `GoldenSectionSearch.h` does reals with fewer calls of f.
+`euclid` in `number-theory/Factorization.cpp` follows KACTL's `euclid.h`.
 
-The Fenwick tree, lazy segment tree, every file in `techniques/` and all of the graph and string
+The Fenwick tree, lazy segment tree, `Factorization.cpp`, every file in `essentials/` and
+`techniques/` (the cheat sheets compiled and checked line by line), and all of the graph and string
 files above except `GraphBasics.cpp` and `Dijkstra.cpp` were stress-tested against brute force.
 
 `content/tex/kcl-logo.tex` draws the King's College London logo in TikZ, converted from
