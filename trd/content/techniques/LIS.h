@@ -1,7 +1,8 @@
 /**
  * Author: Johan Sannemo
  * License: CC0
- * Description: Compute indices for the longest increasing subsequence.
+ * Description: lis(S) returns the indices of a longest strictly increasing subsequence of S.
+ * For non-decreasing, make the change marked in the code.
  * Time: $O(N \log N)$
  * Status: Tested on kattis:longincsubseq, stress-tested
  */
