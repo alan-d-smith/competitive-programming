@@ -5,6 +5,8 @@
  * Source: My head with inspiration from tinyKACTL
  * Description: Class to handle points in the plane.
  * 	T can be e.g. double or long long. (Avoid int.)
+ * Usage: typedef Point<ll> P; P a(1, 2), b(3, 4); // Point<double> for real coordinates
+ * P c = a + b * 2; ll d = a.dot(b), x = a.cross(b); double len = (b - a).dist();
  * Status: Works fine, used a lot
  */
 #pragma once
