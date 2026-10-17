@@ -1,13 +1,10 @@
 /**
  * Author: Alan Smith
  * Source: KACTL has the same idea as TernarySearch.h (integers) and GoldenSectionSearch.h (reals, fewer calls of f)
- * Description: Ternary search: finds the x in [lo, hi] where f is largest, when f strictly increases up to
- *  its peak and never increases after it (unimodal). Each step compares f at two points and drops the
- *  third of the range that cannot contain the peak. For the smallest value instead, use -f.
- *  Typical uses: a distance that shrinks and then grows over time, or a sum of convex functions (minimum).
- *  Flat stretches are fine after the peak but break it before the peak.
- *  ternaryMax evaluates f 200 times; each step keeps 2/3 of the range, so 100 steps shrink it by $10^{-17}$.
- *  ternaryMaxInt is for integers: the peak is the first x with $f(x) \ge f(x+1)$, found by binary search.
+ * Description: The x in [lo, hi] where f is largest, if f strictly increases up to the peak and never increases
+ *  after it (flat stretches before the peak break it). For the smallest value, use -f. Use it for e.g.
+ *  a distance that shrinks then grows over time, or a sum of convex functions (minimum).
+ *  ternaryMax calls f 200 times. ternaryMaxInt is for integers: the first x with $f(x) \ge f(x+1)$.
  * Usage: double x = ternaryMax(lo, hi, f); // f: a lambda taking and returning double
  * Time: O(\log(hi - lo)) for integers
  */

@@ -1,15 +1,11 @@
 /**
  * Author: Alan Smith
- * Description: Binary search on the answer, for ``the smallest x that works'' when works(x) goes
- *  false, ..., false, true, ..., true (if x works, so does every bigger x). firstTrue returns the
- *  smallest x in [lo, hi) that works, or hi if none does; each step halves the range.
- *  Take mid = lo + (hi - lo) / 2, not (lo + hi) / 2: the sum can overflow for big values, and for negative
- *  ones it rounds towards 0, so mid can equal hi and the loop never ends (e.g. lo = -3, hi = -2).
- *  For ``the largest x that works'' (true, ..., true, false, ...), find the first x that does not work and subtract 1.
- *  firstTrueReal does the same on real numbers with a fixed 100 halvings, so there is no off-by-one.
- *  For a sorted array, use lower\_bound instead (BinarySearch.cpp).
- *  minMaxPart is an example: cut a (all a[i] $\ge$ 0) into at most k contiguous parts, minimising the largest
- *  part's sum. Checking one cap greedily is easy, while finding the best cap directly is not.
+ * Description: For ``the smallest x that works'', when works(x) is false, ..., false, true, ..., true.
+ *  firstTrue returns the smallest such x in [lo, hi), or hi if there is none. For ``the largest x that
+ *  works'', find the first x that does not work and subtract 1. firstTrueReal does 100 halvings on reals.
+ *  Write mid = lo + (hi - lo) / 2, as (lo + hi) / 2 can overflow, and for negative values rounds up, so
+ *  the loop can run forever (lo = -3, hi = -2). For a sorted array, use lower\_bound (BinarySearch.cpp).
+ *  minMaxPart splits a (all a[i] $\ge$ 0) into at most k contiguous parts with the smallest largest sum.
  * Usage: ll x = firstTrue(lo, hi, works); // works: a lambda taking ll, returning bool
  * Time: O(\log(hi - lo)) calls to works
  */

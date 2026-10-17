@@ -1,13 +1,10 @@
 /**
  * Author: Alan Smith
- * Description: Shortest distances from s when some edge weights are negative (otherwise Dijkstra is faster).
- *  edges holds every edge as (a, b, w), from a to b with weight w, and the global n of GraphBasics.cpp must be
- *  the number of nodes. For an undirected edge add both directions, but then a negative edge is itself a negative cycle.
- *  For real weights (e.g. $-\log$ of exchange rates), use double for w and dist, and only count improvements over $10^{-9}$.
- *  Each round relaxes every edge. A shortest path has at most n - 1 edges, so without a negative cycle
- *  the distances stop changing within n - 1 rounds. Returns false if the n-th round still changes
- *  something: then a negative cycle is reachable from s, and some distances are really $-\infty$.
- *  Unreachable nodes get LLONG\_MAX.
+ * Description: Shortest distances from s, with negative weights allowed (else Dijkstra is faster).
+ *  Set the global n of GraphBasics.cpp and put each edge in edges as (a, b, w). An undirected edge goes in
+ *  both directions, so a negative one is a negative cycle by itself. Returns false if a negative cycle is
+ *  reachable from s (some distances are then $-\infty$). Unreachable nodes get LLONG\_MAX.
+ *  For real weights (e.g. $-\log$ of exchange rates), make w and dist double and only relax by more than $10^{-9}$.
  * Usage: n = 5; edges.push_back({a, b, w}); bool ok = bellmanFord(s);
  * Time: O(nm)
  */

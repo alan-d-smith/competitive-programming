@@ -1,10 +1,8 @@
 /**
  * Author: Alan Smith
- * Description: Checks whether the undirected graph g can be 2-coloured so that every edge joins two
- *  different colours (e.g. split people into two teams with no rivals in the same team).
- *  g and n are the globals of GraphBasics.cpp, e.g. filled by readGraph (do not declare your own n).
- *  This holds iff there is no cycle of odd length. BFS from each uncoloured node gives each neighbour
- *  the other colour; afterwards col[u] is 0 or 1.
+ * Description: Whether the undirected graph in the globals g and n of GraphBasics.cpp (do not declare your own n)
+ *  can be 2-coloured so that every edge joins different colours, i.e. it has no odd cycle.
+ *  If so, col[u] is 0 or 1. E.g. splitting people into two teams with no rivals in the same team.
  * Usage: if (bipartite()) ... col[u] ...
  * Time: O(n + m)
  */

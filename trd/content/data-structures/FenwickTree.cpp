@@ -1,9 +1,8 @@
 /**
  * Author: Alan Smith
- * Description: Fenwick tree (binary indexed tree): change one element and get prefix sums, both in $O(\log n)$.
- *  Shorter and faster than a segment tree, but only for sums (or anything you can undo, like xor).
- *  add(i, x) does a[i] += x, and sum(r) is $a_0 + \dots + a_{r-1}$ (0-indexed), so the sum of a[l..r) is
- *  sum(r) - sum(l). For range add and point query instead: add x at l and -x at r, then a[i] is sum(i + 1).
+ * Description: add(i, x) does a[i] += x, and sum(r) is $a_0 + \dots + a_{r-1}$ (0-indexed), so the sum of a[l..r) is
+ *  sum(r) - sum(l). Shorter and faster than a segment tree, but only for sums (or xor).
+ *  For range add and point query: add x at l and -x at r; then a[i] is sum(i + 1).
  * Usage: Fenwick f(n); f.add(i, x); ll s = f.sum(r) - f.sum(l);
  * Time: O(\log n)
  */

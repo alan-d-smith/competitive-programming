@@ -1,11 +1,10 @@
 /**
  * Author: Alan Smith
  * Source: follows KACTL's KMP.h (Johan Sannemo, CC0)
- * Description: Knuth--Morris--Pratt. pi[i] is the length of the longest proper prefix of s[0..i] that is
- *  also a suffix of it. match(text, pat) returns the start of every occurrence of pat in text, overlapping
- *  ones included: in pi of pat + separator + text, a value equal to the length of pat marks the end of a match.
- *  The separator is char 0, so neither string may contain it (e.g. numbers stored as chars): pick another one then.
- *  The shortest period of s is $p = n - $ pi[n-1], and s is a shorter block repeated iff $p < n$ and p divides n.
+ * Description: pi[i] is the length of the longest proper prefix of s[0..i] that is also a suffix of it.
+ *  match(text, pat) returns the start of every occurrence of pat (overlaps included). It uses char 0 as a
+ *  separator, so neither string may contain it (e.g. numbers stored as chars).
+ *  The shortest period of s is $p = n - $ pi[n-1]; s is a shorter block repeated iff $p < n$ and p divides n.
  * Usage: vi starts = match(text, pat);
  * Time: O(n + m)
  */

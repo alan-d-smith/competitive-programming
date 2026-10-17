@@ -1,9 +1,8 @@
 /**
  * Author: Alan Smith
- * Description: Minimum spanning tree: the cheapest set of n - 1 edges that connects all n nodes.
- *  Goes through the edges from cheapest to most expensive and keeps each edge that joins two
- *  different groups. Returns the total weight; the kept edges are in mst, and the graph is
- *  connected iff sz(mst) == n - 1. For a maximum spanning tree, sort in decreasing order.
+ * Description: Minimum spanning tree: the cheapest n - 1 edges connecting all n nodes. Takes the edges from the
+ *  cheapest up, keeping each one that joins two different groups. Returns the total weight; the kept
+ *  edges are in mst, and the graph is connected iff sz(mst) == n - 1. For a maximum one, sort descending.
  * Usage: edges.push_back({w, a, b}); ll cost = kruskal(n, edges);
  * Time: O(m \log m)
  */

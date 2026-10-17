@@ -1,11 +1,9 @@
 /**
  * Author: Alan Smith
- * Description: Two pointers (sliding window): for each right end r, move the left end l forward until the
- *  window a[l..r] is right again. This works when shrinking a good window keeps it good (and growing a bad
- *  one keeps it bad), e.g. sum $\le$ S with all a[i] $\ge$ 0, or at most k distinct values: then l only moves
- *  forward, so the whole loop is O(n). Both functions need all a[i] $\ge$ 0.
- *  longestWindow is the length of the longest subarray with sum $\le$ S (0 if none).
- *  shortestWindow is the length of the shortest subarray with sum $\ge$ S > 0 (-1 if none).
+ * Description: For each right end r, move the left end l forward until a[l..r] is valid again. This works when a valid
+ *  window stays valid if shrunk (e.g. sum $\le$ S with all a[i] $\ge$ 0, or at most k distinct values), so l only
+ *  moves forward: O(n) in total. Both functions need all a[i] $\ge$ 0. longestWindow is the longest subarray
+ *  with sum $\le$ S (0 if none); shortestWindow is the shortest with sum $\ge$ S > 0 (-1 if none).
  * Time: O(n)
  */
 int longestWindow(const vector<ll>& a, ll S) {

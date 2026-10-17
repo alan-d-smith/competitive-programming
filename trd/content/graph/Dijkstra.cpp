@@ -1,10 +1,9 @@
 /**
  * Author: Alan Smith
- * Description: Shortest distances from s when no edge weight is negative.
- *  adj[u] holds a pair (v, w) for each edge from u to v with weight w (add both directions if undirected).
- *  Unreachable nodes get LLONG\_MAX. The priority queue always gives the closest node that is not done yet.
- *  If you only need s to t, pass t to stop early: then only dist[t] and path(t) are final.
- *  par[v] is the node before v on a shortest path, and path(t) follows it back to s.
+ * Description: Shortest distances from s with no negative weights. adj[u] holds (v, w) for each edge from u to v
+ *  (add both directions if undirected). Unreachable nodes get LLONG\_MAX. Pass t to stop once t is done;
+ *  then only dist[t] and path(t) are final. par[v] is the node before v on a shortest path, and path(t)
+ *  lists the nodes from s to t.
  * Usage: adj[a].push_back({b, w});
  *  dijkstra(s, t); ll d = dist[t]; vi p = path(t);
  * Time: O((n + m) \log m)

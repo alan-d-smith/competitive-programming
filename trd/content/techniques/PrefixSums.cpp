@@ -1,11 +1,9 @@
 /**
  * Author: Alan Smith
- * Description: Prefix sums: p[i] = a[0] + ... + a[i-1], so the sum of a[l..r) is p[r] - p[l] in O(1).
- *  In 2D, P[i][j] is the sum of g over rows $< i$ and columns $< j$, and any rectangle follows by inclusion-exclusion.
- *  countSum counts the subarrays with sum exactly k in $O(n \log n)$: pairs of prefix sums with p[r] - p[l] = k
- *  (works with negatives).
+ * Description: p[i] = a[0] + ... + a[i-1], so the sum of a[l..r) is p[r] - p[l]. In 2D, P[i][j] is the sum over rows $< i$
+ *  and columns $< j$. countSum counts the subarrays with sum exactly k in $O(n \log n)$ (negatives are fine).
  *  Difference array: to add x to a[l..r) many times and read a only at the end, do d[l] += x and d[r] -= x
- *  (d has size n + 1), then add the running sum d[0] + ... + d[i] to each a[i]. For both online, use a Fenwick tree.
+ *  (size n + 1), then add the running sum of d to a. For both online, use a Fenwick tree.
  * Usage: vector<ll> p = prefixSums(a); ll s = p[r] - p[l];
  *  auto P = prefixSums2D(g); // rows [r1, r2), columns [c1, c2):
  *  ll rect = P[r2][c2] - P[r1][c2] - P[r2][c1] + P[r1][c1];

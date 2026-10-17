@@ -7,26 +7,22 @@
 \section{Arrays}
 	\kactlimport{PrefixSums.cpp}
 	\kactlimport{TwoPointers.cpp}
-	\textbf{Coordinate compression.} If values are up to $10^9$ but only their order matters, replace each by its
-	index among the sorted distinct values: \texttt{vals = a; sort, erase(unique); x = lower\_bound(all(vals), x) - vals.begin()}.
+	\textbf{Coordinate compression.} If only the order of values matters, replace each by its index among the
+	sorted distinct values: \texttt{vals = a; sort, erase(unique); x = lower\_bound(all(vals), x) - vals.begin()}.
 
-	\textbf{Monotonic stack.} For the nearest bigger element to the left of each a[i], keep a stack of indices:
-	pop while \texttt{a[top] <= a[i]}, then the top (if any) is the answer, then push i. $O(n)$ in total.
+	\textbf{Monotonic stack.} Nearest bigger element to the left of each a[i]: keep a stack of indices, pop
+	while \texttt{a[top] <= a[i]}; the top (if any) is the answer; push i. $O(n)$ in total.
 
 \section{Dynamic programming}
 	\textbf{Designing a DP.}
-	(1) State: the few facts about a partial solution that decide what can still happen,
-	e.g.\ \texttt{dp[i][c]} = the best using the first $i$ items with capacity $c$.
-	(2) Transition: get a state from smaller ones, usually by trying each choice for the next step.
-	(3) Base cases. (4) An order in which every state comes after the states it uses, or recursion with
-	memoisation, which finds the order by itself. (5) Where the answer is, e.g.\ \texttt{dp[n][W]}.
-	The time is the number of states times the work per state: check it against the constraints.
-	Counting problems add over the choices (mod $p$), optimisation problems take the min or max.
+	(1) State: what you must know about a partial solution, e.g.\ \texttt{dp[i][c]} = the best using the
+	first $i$ items with capacity $c$. (2) Transition: try each choice for the next step. (3) Base cases.
+	(4) An order where each state comes after the ones it uses, or memoised recursion. (5) Where the answer is.
+	Time = states $\times$ work per state. Counting adds over choices (mod $p$); optimising takes min or max.
 
-	Common states: a prefix, \texttt{dp[i]} (e.g.\ grid paths: \texttt{dp[i][j] = dp[i-1][j] + dp[i][j-1]};
-	longest increasing subsequence: \texttt{LIS.h}); a node of a DAG, in topological order;
-	a subset of up to 20 items, \texttt{dp[S]}; a segment, \texttt{dp[l][r]}. Games where both players play
-	optimally: a position is winning iff some move leads to a losing position (usually, having no move loses).
+	Common states: a prefix \texttt{dp[i]} (grid paths: \texttt{dp[i][j] = dp[i-1][j] + dp[i][j-1]}; \texttt{LIS.h});
+	a DAG node, in topological order; a subset \texttt{dp[S]} of up to 20 items; a segment \texttt{dp[l][r]}.
+	Games: a position wins iff some move leads to a losing one (usually, having no move loses).
 	\kactlimport{Knapsack.cpp}
 	\kactlimport{LCS.cpp}
 	\kactlimport{LIS.h}

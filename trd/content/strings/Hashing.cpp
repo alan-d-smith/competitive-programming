@@ -1,16 +1,12 @@
 /**
  * Author: Alan Smith
- * Description: String hashing: after O(n) setup, get(l, r) is a number for the substring s[l..r)
- *  (r exclusive), so two substrings can be compared in O(1). Equal strings always get equal hashes.
- *  It is probabilistic: different strings can also get equal hashes. Here that is very unlikely, as we
- *  work mod the prime $p = 2^{61}-1$ with a random base B: a comparison is wrong with probability at most
- *  $n/p \approx 10^{-13}$. It goes wrong with a small modulus like $10^9+7$ (a set of $2 \cdot 10^5$ hashes
- *  then has about 20 collisions) or with ull overflow (mod $2^{64}$), which Thue--Morse strings break for
- *  every base. All Hash objects share B, so substrings of different strings can be compared too.
- *  For example, longestRepeat finds the longest substring that appears at least twice (possibly overlapping)
- *  in $O(n \log n)$. If some length-L substring repeats, so does a length-(L-1) one, so binary search on L, checking each L
- *  by putting the hash of every window of length L in a set. The same idea finds the longest common
- *  substring of two strings: put one string's windows in the set and look up the other's.
+ * Description: get(l, r) is a hash of s[l..r), so substrings (also of different strings) are compared in O(1).
+ *  It is probabilistic: mod the prime $2^{61}-1$ with a random base, a comparison is wrong with probability
+ *  at most $n/2^{61} \approx 10^{-13}$. Do not use mod $10^9+7$ (a set of $2 \cdot 10^5$ hashes has about 20
+ *  collisions) or ull overflow (Thue--Morse strings break it for every base).
+ *  longestRepeat finds the longest substring that appears twice (overlaps allowed) in $O(n \log n)$:
+ *  binary search on the length L, with a set of the hashes of all length-L windows.
+ *  The same finds the longest common substring of two strings.
  * Usage: Hash h(s); if (h.get(a, a + len) == h.get(b, b + len)) ...
  * Time: O(n) setup, O(1) per get
  */

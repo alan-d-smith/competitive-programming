@@ -1,10 +1,9 @@
 /**
  * Author: Alan Smith
- * Description: Maximum flow from s to t, which must differ (Dinic's algorithm). addEdge(a, b, c) adds a directed edge with
- *  capacity c; for an undirected edge, use addEdge(a, b, c, c). Each phase finds the distance of every
- *  node from s with BFS (only using edges with capacity left), then pushes flow along shortest paths with DFS.
- *  After maxFlow, inCut(u) says whether u is on s's side of a minimum cut, whose capacity equals the max flow.
- *  Bipartite matching: an edge from s to each left node, left to right, and right to t, all with capacity 1.
+ * Description: Maximum flow from s to t ($s \ne t$). addEdge(a, b, c) adds a directed edge of capacity c; for an
+ *  undirected one, use addEdge(a, b, c, c). After maxFlow, inCut(u) says whether u is on s's side of a
+ *  minimum cut (min cut = max flow). Bipartite matching: edges s to each left node, left to right and
+ *  right to t, all of capacity 1.
  * Usage: Dinic fl(n); fl.addEdge(a, b, c); ll f = fl.maxFlow(s, t);
  * Time: O(V^2 E), and O(E \sqrt V) for bipartite matching
  */

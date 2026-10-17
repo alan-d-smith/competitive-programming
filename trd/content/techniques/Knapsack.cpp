@@ -1,11 +1,10 @@
 /**
  * Author: Alan Smith
- * Description: Knapsack DPs over the capacity c = 0..W. items holds (weight, value) pairs.
- *  knapsack01: each item at most once; best[c] is the most value with total weight $\le$ c. c goes down, so
- *  best[c - w] does not include the current item yet. knapsackUnbounded: any number of each item; c goes up.
- *  coinWays[c] is the number of ways to make exactly c (order does not matter: coins in the outer loop;
- *  reduce mod p if asked). minCoins[c] is the fewest coins making exactly c, LLONG\_MAX if impossible.
- *  If W is too big but values are small, swap the roles: the least weight for each total value.
+ * Description: DPs over the capacity c = 0..W; items holds (weight, value) pairs. knapsack01 uses each item at most
+ *  once: best[c] is the most value with weight $\le$ c, and c goes down so that no item is reused.
+ *  knapsackUnbounded is the same with c going up. coinWays[c] is the number of ways to make exactly c,
+ *  ignoring order (reduce mod p if asked); minCoins[c] is the fewest coins for exactly c (LLONG\_MAX if none).
+ *  If W is too big but the values are small, swap roles: the least weight for each total value.
  * Usage: vector<ll> best = knapsack01(W, items); ll ans = best[W];
  * Time: O(nW)
  */

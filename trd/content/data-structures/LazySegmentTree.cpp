@@ -1,11 +1,9 @@
 /**
  * Author: Alan Smith
- * Description: Segment tree with lazy propagation, for range updates. add(l, r, x) adds x to every a[i] with
- *  $l \le i < r$, and sum(l, r) returns the sum of those a[i]. All a[i] start at 0; to start from an array,
- *  call add(i, i + 1, a[i]) for each i. Node v covers [lo, hi) and its children are 2v and 2v + 1.
- *  lz[v] is an add already applied to v but not yet to its children: push hands it down before visiting them.
- *  For range min instead of sum: apply does t[v] += x (not times the length), combine with min
- *  instead of +, and return LLONG\_MAX instead of 0 outside the range.
+ * Description: add(l, r, x) adds x to every a[i] with $l \le i < r$, and sum(l, r) is the sum of those a[i].
+ *  All a[i] start at 0 (to start from an array, call add(i, i + 1, a[i]) for each i). lz[v] is an add
+ *  not yet passed down to v's children. For range min: apply does t[v] += x (not times the length),
+ *  combine with min instead of +, and return LLONG\_MAX outside the range.
  * Usage: LazySeg st(n); st.add(l, r, x); ll s = st.sum(l, r);
  * Time: O(\log n) per operation
  */
