@@ -36,7 +36,7 @@ $10^{18}$ & $O(\log n)$ & a formula, binary search, matrix power \\
 \begin{itemize}[leftmargin=1em, nosep]
 	\whencue{how many ways\dots, modulo $10^9+7$} DP, or combinatorics (\whenfile{ModBinomial}).
 	\whencue{pick items within a weight limit} knapsack; \emph{make an amount from coins}: \whenfile{coinWays}, \whenfile{minCoins} (\whenfile{Knapsack}).
-	\whencue{fewest edits between strings, common subsequence} \whenfile{LCS}; \emph{increasing subsequence}: \whenfile{LIS}.
+	\whencue{fewest edits between strings, common subsequence} \whenfile{LCS}; \emph{increasing or decreasing subsequence}: \whenfile{LIS}, \whenfile{LDS}.
 	\whencue{visit all of $n \le 18$ places, assign $n$ people to $n$ tasks} bitmask DP (\whenfile{BitmaskDP}).
 	\whencue{merge or split a sequence, cost per segment} interval DP (\whenfile{IntervalDP}).
 	\whencue{count or longest paths in a DAG} DP in topological order (\whenfile{TopoSort}).
@@ -46,12 +46,12 @@ $10^{18}$ & $O(\log n)$ & a formula, binary search, matrix power \\
 
 \subsection{Graphs}
 \begin{itemize}[leftmargin=1em, nosep]
-	\whencue{fewest moves (grid, puzzle)} BFS where nodes are states (\whenfile{GraphBasics}).
+	\whencue{fewest moves (grid, puzzle)} BFS where nodes are states (\whenfile{GridBFS}, \whenfile{GraphBasics}).
 	\whencue{shortest path with extra state (fuel, keys held, last move)} Dijkstra or BFS on (node, state) pairs.
 	\whencue{cheapest route} weights $\ge 0$: \whenfile{Dijkstra}; negative: \whenfile{BellmanFord}; all pairs, $n \le 500$: \whenfile{FloydWarshall}.
 	\whencue{exchange rates: can you make money?} weights $-\log(\text{rate})$, look for a negative cycle (\whenfile{BellmanFord}, with \texttt{double} weights).
 	\whencue{tasks with prerequisites, is there a deadlock?} \whenfile{TopoSort} (a cycle iff fewer than $n$ nodes come out).
-	\whencue{connect everything as cheaply as possible} \whenfile{Kruskal}. The path between two nodes in the MST also has the smallest possible largest edge.
+	\whencue{connect everything as cheaply as possible} \whenfile{Kruskal}. The MST path between two nodes also minimises its largest edge.
 	\whencue{are $a$ and $b$ connected, as links are added} \whenfile{UnionFind}. Links removed over time: go backwards, adding them.
 	\whencue{split into two sides with no conflicts} \whenfile{Bipartite}.
 	\whencue{pair up one-to-one (people and jobs)} matching (\whenfile{Dinic}). Fewest nodes touching every edge of a
@@ -89,7 +89,8 @@ $10^{18}$ & $O(\log n)$ & a formula, binary search, matrix power \\
 \subsection{Maths}
 \begin{itemize}[leftmargin=1em, nosep]
 	\whencue{$a^b \bmod p$, dividing mod $p$, $\binom{n}{r} \bmod p$} \whenfile{ModBinomial}.
-	\whencue{primes up to $10^7$} \whenfile{Eratosthenes}; one $n \le 10^{12}$: trial division up to $\sqrt n$.
+	\whencue{primes up to $10^7$} \whenfile{Eratosthenes}; factors or divisors of one $n \le 10^{12}$: \whenfile{Factorization}.
+	\whencue{inverse mod a non-prime, $ax + by = \gcd(a, b)$} \whenfile{modInverse}, \whenfile{euclid}.
 	\whencue{a linear recurrence for $n$ up to $10^{18}$} matrix power (\whenfile{Matrix}).
 	\whencue{solve linear equations} \whenfile{SolveLinear}.
 \end{itemize}
