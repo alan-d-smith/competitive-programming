@@ -14,6 +14,8 @@
 \begin{document}
 	% Cover page:
 	% \maketeampage
+	% Columns ended early by \columnbreak keep normal spacing instead of being stretched to full height
+	\raggedcolumns
 	\begin{multicols*}{3}
 	\thispagestyle{fancy}
 	% Table of contents, without subsections:
@@ -23,12 +25,16 @@
 	\kactlchapter{contest}
 	\columnbreak % keep the Essentials heading with its first listing
 	\kactlchapter{essentials}
+	% The guide gets a page of its own, so it can lie open next to you
+	\clearpage
 	\kactlchapter{guide}
+	\clearpage
 	\kactlchapter{techniques}
 	\kactlchapter{math}
 	\kactlchapter{data-structures}
 	\kactlchapter{numerical}
 	\kactlchapter{number-theory}
+	\columnbreak % keep IntPerm on one page
 	\kactlchapter{combinatorial}
 	\kactlchapter{graph}
 	\kactlchapter{geometry}

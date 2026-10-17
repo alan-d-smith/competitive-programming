@@ -16,5 +16,4 @@ struct Fenwick {
 		ll s = 0;
 		for (; r > 0; r -= r & -r) s += t[r];
 		return s;
-	}
-};
+	} };

@@ -22,5 +22,4 @@ bool bipartite() {
 			}
 		}
 	}
-	return true;
-}
+	return true; }

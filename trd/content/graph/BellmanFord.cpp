@@ -23,5 +23,4 @@ bool bellmanFord(int s) {
 				dist[b] = dist[a] + w, changed = true;
 		if (!changed) return true;
 	}
-	return false;
-}
+	return false; }
